@@ -2,9 +2,9 @@ import Book as Book
 
 interface BookManagementInterface {
     fun addBook(name: String,author: String,isbn: Int,id: String)
-    fun deleteBook(index:Int)
-    fun updateBook(index:Int,book: Book)
-    fun updateBook(index:Int,name:String,author:String,isbn:Int,id:String)
+    fun deleteBook(index:Int):Boolean
+    fun updateBook(index:Int,book: Book):Boolean
+    fun updateBook(index:Int,name:String,author:String,isbn:Int,id:String):Boolean
     fun getBook(index:Int):Book?
 }
 
@@ -16,25 +16,31 @@ class BookManagement(size:Int):BookManagementInterface {
         books[books.indexOfFirst { it == null }] = newBook
     }
     // indexes will change in Array
-    override fun deleteBook(index:Int){
+    override fun deleteBook(index:Int):Boolean{
         if (index in books.indices) {
             // Shift elements to the left to fill the gap after removal
             for (i in index until books.size - 1) {
                 books[i] = books[i + 1]
             }
             books[books.size - 1] = null // Clear last element
+            return true
         }
+        return false
     }
-    override fun updateBook(index:Int,book:Book){
+    override fun updateBook(index:Int,book:Book):Boolean{
         if (index in books.indices) {
             books[index] = book
+            return true
         }
+        return false
     }
-    override fun updateBook(index:Int,name:String,author:String,isbn:Int,id:String){
+    override fun updateBook(index:Int,name:String,author:String,isbn:Int,id:String):Boolean{
         if (index in books.indices) {
             val updatedBook = Book(name, author, isbn, id)
             books[index] = updatedBook
+            return true
         }
+        return false
     }
 
     override fun getBook(index:Int):Book?{
