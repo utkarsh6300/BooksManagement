@@ -38,10 +38,10 @@ class BookTest {
     fun `test book properties`() {
         // Test all properties at once
         assertAll("book",
-            { assertEquals("The Catcher in the Rye", book.getName()) },
-            { assertEquals("J.D. Salinger", book.getAuthor()) },
-            { assertEquals(123456789, book.getIsbn()) },
-            { assertEquals("1", book.getId()) }
+            { assertEquals("The Concise 48 Laws Of Power", book.getName()) },
+            { assertEquals("The Robert Greene Collection", book.getAuthor()) },
+            { assertEquals(893748263, book.getIsbn()) },
+            { assertEquals("ns6ij1qn76g%$@&^@*HH0VGHh7jx2vs", book.getId()) }
         )
     }
 }

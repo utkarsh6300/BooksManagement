@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 
 import BookManagement as BookManagement
+import Book as Book
 
 class BookManagementTest {
     private lateinit var bookStore: BookManagement
@@ -78,5 +79,8 @@ class BookManagementTest {
         assertNull(book2, "The book at invalid index should be null")
 
         // needs to be added for delete and update
+        assertEquals(false,bookStore.deleteBook(3),"delete should not be successful in non existing book")
+        assertEquals(false,bookStore.updateBook(3,"The Concise 48 Laws Of Power","The Robert Greene Collection",123456789,"rextcvgns6ij1qn76"),"update should not be successful in non existing book")
+        assertEquals(false,bookStore.updateBook(3,Book("The Concise 48 Laws Of Power","The Robert Greene Collection",123456789,"rextcvgns6ij1qn76")),"update should not be successful in non existing book")
     }
 }
