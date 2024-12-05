@@ -24,3 +24,6 @@ sourceSets {
         java.srcDirs("src/test/kotlin")
     }
 }
+kotlin {
+    jvmToolchain(21)
+}
