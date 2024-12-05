@@ -1,14 +1,7 @@
 import Book as Book
+import  BookManagementInterface as BookManagementInterface
 
-interface BookManagementInterface {
-    fun addBook(name: String,author: String,isbn: Int,id: String)
-    fun deleteBook(index:Int):Boolean
-    fun updateBook(index:Int,book: Book):Boolean
-    fun updateBook(index:Int,name:String,author:String,isbn:Int,id:String):Boolean
-    fun getBook(index:Int):Book?
-}
-
-class BookManagement(size:Int):BookManagementInterface {
+class BookManagement(size:Int): BookManagementInterface {
     private var books: Array<Book?> = arrayOfNulls(size)
     override fun addBook(name: String,author: String,isbn: Int,id: String){
         // when array is full that condition needs to be checked
