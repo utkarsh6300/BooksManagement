@@ -4,7 +4,7 @@ import DB.Connections as Connections
 
 // store data in DB Postgres
 // skipping error handling
-class BookManagement(size: Int) : BookManagementInterface {
+class BookManagement() : BookManagementInterface {
     private val dbConnections = Connections()
     override fun addBook(book: Book) {
         val connection = dbConnections.connect()
@@ -24,10 +24,10 @@ class BookManagement(size: Int) : BookManagementInterface {
         // delete data from db
         val preparedStatement = connection.prepareStatement("DELETE FROM BOOK WHERE id = ?");
         preparedStatement.setString(1, id)
-        preparedStatement.executeUpdate();
+        val result = preparedStatement.executeUpdate();
         preparedStatement.close();
         dbConnections.close(connection)
-        return true
+        return result != 0
     }
 
     override fun updateBook(id: String, book: Book): Boolean {
@@ -39,10 +39,10 @@ class BookManagement(size: Int) : BookManagementInterface {
         preparedStatement.setString(1, book.getName())
         preparedStatement.setString(2, book.getAuthor())
         preparedStatement.setInt(3, book.getIsbn())
-        preparedStatement.executeUpdate();
+        val result = preparedStatement.executeUpdate();
         preparedStatement.close();
         dbConnections.close(connection)
-        return true
+        return result != 0
     }
 
     override fun getBook(id: String): Book? {
