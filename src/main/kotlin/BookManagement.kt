@@ -51,11 +51,13 @@ class BookManagement(size: Int) : BookManagementInterface {
         val preparedStatement = connection.prepareStatement("SELECT * FROM BOOK WHERE id = ?");
         preparedStatement.setString(1, id)
         val result = preparedStatement.executeQuery();
-        result.next()
-        val name = result.getString(2);
-        val author = result.getString(3);
-        val isbn = result.getInt(4);
-        val book = Book(name,author,isbn,id)
+        var book : Book? = null
+        if(result.next()) {
+            val name = result.getString(2);
+            val author = result.getString(3);
+            val isbn = result.getInt(4);
+            book = Book(name, author, isbn, id)
+        }
         preparedStatement.close();
         dbConnections.close(connection)
 //        return data
