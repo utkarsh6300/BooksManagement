@@ -1,4 +1,4 @@
-class Book(name: String,author: String,isbn: Int,id: String){
+class Book(name: String,author: String,isbn: Int,id: String){  //should be a data class in kotlin
     private var _name: String=name
     private var _author: String=author
     private var _isbn: Int=isbn
