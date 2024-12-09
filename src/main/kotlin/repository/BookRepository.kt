@@ -1,12 +1,18 @@
-import Book as Book
-import  BookManagementInterface as BookManagementInterface
-import DB.Connections as Connections
+package repository
 
-// store data in DB Postgres
-// skipping error handling
-class BookManagement() : BookManagementInterface {
+import config.Connections as Connections
+import services.Book
+
+
+//import io.micronaut.data.repository.CrudRepository;    // for using crud of framework  // will be using later.
+
+
+class BookRepository : BookRepositoryInterface {
+
     private val dbConnections = Connections()
-    override fun addBook(book: Book) {
+
+    // can make all functions generic as there is repetition and tight coupling or can use framework provided functions for now using these.
+    override fun insertBook(book: Book) : Boolean {
         val connection = dbConnections.connect()
         // add data to db
         val preparedStatement = connection.prepareStatement("INSERT INTO BOOK (id,name,author,isbn) VALUES (?,?,?,?)");
@@ -14,25 +20,26 @@ class BookManagement() : BookManagementInterface {
         preparedStatement.setString(2, book.getName())
         preparedStatement.setString(3, book.getAuthor())
         preparedStatement.setInt(4, book.getIsbn())
-        preparedStatement.executeUpdate();
+        val result = preparedStatement.executeUpdate();
         preparedStatement.close();
         dbConnections.close(connection)
+        return result !=0
     }
 
     override fun deleteBook(id: String): Boolean {
         val connection = dbConnections.connect()
-        // delete data from db
+        // delete data in db
         val preparedStatement = connection.prepareStatement("DELETE FROM BOOK WHERE id = ?");
         preparedStatement.setString(1, id)
         val result = preparedStatement.executeUpdate();
         preparedStatement.close();
         dbConnections.close(connection)
-        return result != 0
+        return result !=0
     }
 
     override fun updateBook(id: String, book: Book): Boolean {
         val connection = dbConnections.connect()
-        // update data from db
+        // update data in db
         val preparedStatement =
             connection.prepareStatement("UPDATE BOOK SET name = ?, author = ?, isbn = ? WHERE id = ?");
         preparedStatement.setString(4, id)
@@ -42,7 +49,7 @@ class BookManagement() : BookManagementInterface {
         val result = preparedStatement.executeUpdate();
         preparedStatement.close();
         dbConnections.close(connection)
-        return result != 0
+        return result !=0
     }
 
     override fun getBook(id: String): Book? {
@@ -51,8 +58,8 @@ class BookManagement() : BookManagementInterface {
         val preparedStatement = connection.prepareStatement("SELECT * FROM BOOK WHERE id = ?");
         preparedStatement.setString(1, id)
         val result = preparedStatement.executeQuery();
-        var book : Book? = null
-        if(result.next()) {
+        var book: Book? = null
+        if (result.next()) {
             val name = result.getString(2);
             val author = result.getString(3);
             val isbn = result.getInt(4);
@@ -60,7 +67,6 @@ class BookManagement() : BookManagementInterface {
         }
         preparedStatement.close();
         dbConnections.close(connection)
-//        return data
         return book
     }
 }

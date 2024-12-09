@@ -25,7 +25,7 @@ class BookManagementTest {
         val book = bookStore.getBook("ns6ij1qn7&^@*HH0VGHh7jx2vs")
         println(book)
         assertNotNull(book,"book should exist")
-        assertAll("book",
+        assertAll("controller",
             { assertEquals("The Concise 48 Laws Of Power", book?.getName()) },
             { assertEquals("The Robert Greene Collection", book?.getAuthor()) },
             { assertEquals(893748263, book?.getIsbn()) },
@@ -41,7 +41,7 @@ class BookManagementTest {
         val book = bookStore.getBook("ns6g%$@&^@*HH0VGHh7jx2vs")
 
         assertNotNull(book, "The book should exist after update")
-        assertAll("book",
+        assertAll("controller",
             { assertEquals("The Concise 48 Laws Of Power", book?.getName()) },
             { assertEquals("The Robert Greene Collection", book?.getAuthor()) },
             { assertEquals(123456789, book?.getIsbn()) }
@@ -54,13 +54,13 @@ class BookManagementTest {
         bookStore.addBook(Book("The Great Gatsby", "F. Scott Fitzgerald", 123456789, "1"))
         bookStore.addBook(Book("1984", "George Orwell", 987654321, "2"))
 
-        assertNotNull(bookStore.getBook("1"), "Book at index 0 should exist")
-        assertNotNull(bookStore.getBook("2"), "Book at index 1 should exist")
+        assertNotNull(bookStore.getBook("1"), "service.Book at index 0 should exist")
+        assertNotNull(bookStore.getBook("2"), "service.Book at index 1 should exist")
 
         bookStore.deleteBook("1")
 
-        assertNull(bookStore.getBook("1"), "Book with id 1 should be null after deletion")
-        assertNotNull(bookStore.getBook("2"), "Book with id 0 should still exist")
+        assertNull(bookStore.getBook("1"), "service.Book with id 1 should be null after deletion")
+        assertNotNull(bookStore.getBook("2"), "service.Book with id 0 should still exist")
 
     }
     @Test

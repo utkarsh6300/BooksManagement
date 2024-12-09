@@ -37,7 +37,7 @@ class BookTest {
     @Test
     fun `test book properties`() {
         // Test all properties at once
-        assertAll("book",
+        assertAll("controller",
             { assertEquals("The Concise 48 Laws Of Power", book.getName()) },
             { assertEquals("The Robert Greene Collection", book.getAuthor()) },
             { assertEquals(893748263, book.getIsbn()) },
