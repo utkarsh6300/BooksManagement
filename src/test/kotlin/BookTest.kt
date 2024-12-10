@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 //import org.junit.jupiter.api.Test
 import kotlin.test.Test
-import services.Book as Book
+import com.main.model.Book as Book
 
 class BookTest {
     private lateinit var book: Book
@@ -37,7 +37,7 @@ class BookTest {
     @Test
     fun `test book properties`() {
         // Test all properties at once
-        assertAll("com/main/controller",
+        assertAll("com/main/book",
             { assertEquals("The Concise 48 Laws Of Power", book.getName()) },
             { assertEquals("The Robert Greene Collection", book.getAuthor()) },
             { assertEquals(893748263, book.getIsbn()) },

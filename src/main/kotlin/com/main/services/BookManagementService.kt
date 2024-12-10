@@ -1,5 +1,6 @@
 package com.main.services
-import repository.BookManagementRepository as BookManagementRepository
+import com.main.repository.BookManagementRepository as BookManagementRepository
+import com.main.model.Book
 
 
 // store data in DB Postgres

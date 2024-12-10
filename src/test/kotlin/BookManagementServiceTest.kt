@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 
 import com.main.services.BookManagementService as BookManagement
-import services.Book as Book
+import com.main.model.Book as Book
 
 // changed according to the databases
 
@@ -23,7 +23,6 @@ class BookManagementServiceTest {
     fun `test adding a book in store`() {
         bookStore.addBook(Book("The Concise 48 Laws Of Power","The Robert Greene Collection",893748263,"ns6ij1qn7&^@*HH0VGHh7jx2vs"))
         val book = bookStore.getBook("ns6ij1qn7&^@*HH0VGHh7jx2vs")
-        println(book)
         assertNotNull(book,"book should exist")
         assertAll("com/main/controller",
             { assertEquals("The Concise 48 Laws Of Power", book?.getName()) },

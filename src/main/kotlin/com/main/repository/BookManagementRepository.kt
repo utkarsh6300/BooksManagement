@@ -1,7 +1,7 @@
 package com.main.repository
 
-import config.Connections as Connections
-import com.main.services.Book
+import com.main.config.Connections as Connections
+import com.main.model.Book
 import java.sql.SQLException
 
 

@@ -1,4 +1,4 @@
-package com.main.services
+package com.main.model
 
 import jakarta.inject.Singleton
 import io.micronaut.serde.annotation.Serdeable

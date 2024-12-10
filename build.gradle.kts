@@ -1,5 +1,4 @@
 plugins {
-     //    kotlin("jvm") version "2.0.21"
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.9.25"
     id("com.google.devtools.ksp") version "1.9.25-1.0.20"

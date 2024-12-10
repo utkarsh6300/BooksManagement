@@ -1,7 +1,7 @@
 package com.main.controller
 
 import io.micronaut.http.HttpResponse
-import com.main.services.Book
+import com.main.model.Book
 
 interface BookManagementControllerInterface {
     fun addBook(book: Book) : HttpResponse<String>
