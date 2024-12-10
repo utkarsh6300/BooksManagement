@@ -2,7 +2,7 @@ package repository
 
 import services.Book
 
-interface BookRepositoryInterface {
+interface BookManagementRepositoryInterface {
     fun insertBook(book: Book) :Boolean
     fun deleteBook(id: String): Boolean
     fun updateBook(id: String, book: Book): Boolean

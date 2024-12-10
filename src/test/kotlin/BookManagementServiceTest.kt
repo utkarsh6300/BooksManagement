@@ -8,7 +8,7 @@ import Book as Book
 
 // changed according to the databases
 
-class BookManagementTest {
+class BookManagementServiceTest {
     private lateinit var bookStore: BookManagement
     @BeforeEach
     fun setUp() {

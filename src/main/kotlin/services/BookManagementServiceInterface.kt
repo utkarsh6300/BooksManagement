@@ -1,6 +1,6 @@
 package services
 
-interface BookManagementInterface {
+interface BookManagementServiceInterface {
     fun addBook(book: Book) : Boolean
     fun deleteBook(id:String) : Boolean
     fun updateBook(id:String,book: Book) : Boolean

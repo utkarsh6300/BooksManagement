@@ -2,28 +2,38 @@ package repository
 
 import config.Connections as Connections
 import services.Book
+import java.sql.SQLException
 
 
 //import io.micronaut.data.repository.CrudRepository;    // for using crud of framework  // will be using later.
 
 
-class BookRepository : BookRepositoryInterface {
+class BookManagementRepository : BookManagementRepositoryInterface {
 
     private val dbConnections = Connections()
 
     // can make all functions generic as there is repetition and tight coupling or can use framework provided functions for now using these.
     override fun insertBook(book: Book) : Boolean {
-        val connection = dbConnections.connect()
-        // add data to db
-        val preparedStatement = connection.prepareStatement("INSERT INTO BOOK (id,name,author,isbn) VALUES (?,?,?,?)");
-        preparedStatement.setString(1, book.getId())
-        preparedStatement.setString(2, book.getName())
-        preparedStatement.setString(3, book.getAuthor())
-        preparedStatement.setInt(4, book.getIsbn())
-        val result = preparedStatement.executeUpdate();
-        preparedStatement.close();
-        dbConnections.close(connection)
-        return result !=0
+            val connection = dbConnections.connect()
+            // add data to db
+            val preparedStatement = connection.prepareStatement("INSERT INTO BOOK (id,name,author,isbn) VALUES (?,?,?,?)");
+        try {
+            preparedStatement.setString(1, book.getId())
+            preparedStatement.setString(2, book.getName())
+            preparedStatement.setString(3, book.getAuthor())
+            preparedStatement.setInt(4, book.getIsbn())
+            val result = preparedStatement.executeUpdate();
+            return result !=0
+        }
+        catch (error: SQLException){
+            // needs to handle duplicate key issue
+            println(error)
+            return false
+        }
+        finally {
+            preparedStatement.close();
+            dbConnections.close(connection)
+        }
     }
 
     override fun deleteBook(id: String): Boolean {
