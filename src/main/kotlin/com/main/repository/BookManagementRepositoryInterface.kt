@@ -1,6 +1,6 @@
-package repository
+package com.main.repository
 
-import services.Book
+import com.main.services.Book
 
 interface BookManagementRepositoryInterface {
     fun insertBook(book: Book) :Boolean

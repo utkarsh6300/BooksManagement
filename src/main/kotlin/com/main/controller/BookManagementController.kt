@@ -1,11 +1,11 @@
-package controller
+package com.main.controller
 
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.*
 import io.micronaut.inject.validation.RequiresValidation
 
-import services.Book
-import services.BookManagementService
+import com.main.services.Book
+import com.main.services.BookManagementService
 // exact status are not yet communicated to response.
 // error handling needs to be added.
 @Controller("/book")

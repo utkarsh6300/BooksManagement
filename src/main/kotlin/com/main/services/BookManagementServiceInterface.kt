@@ -1,4 +1,4 @@
-package services
+package com.main.services
 
 interface BookManagementServiceInterface {
     fun addBook(book: Book) : Boolean

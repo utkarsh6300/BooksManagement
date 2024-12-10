@@ -3,7 +3,7 @@ import org.junit.jupiter.api.BeforeEach
 //import org.junit.jupiter.api.Test
 import kotlin.test.Test
 
-import services.BookManagementService as BookManagement
+import com.main.services.BookManagementService as BookManagement
 import services.Book as Book
 
 // changed according to the databases
@@ -25,7 +25,7 @@ class BookManagementServiceTest {
         val book = bookStore.getBook("ns6ij1qn7&^@*HH0VGHh7jx2vs")
         println(book)
         assertNotNull(book,"book should exist")
-        assertAll("controller",
+        assertAll("com/main/controller",
             { assertEquals("The Concise 48 Laws Of Power", book?.getName()) },
             { assertEquals("The Robert Greene Collection", book?.getAuthor()) },
             { assertEquals(893748263, book?.getIsbn()) },
@@ -41,7 +41,7 @@ class BookManagementServiceTest {
         val book = bookStore.getBook("ns6g%$@&^@*HH0VGHh7jx2vs")
 
         assertNotNull(book, "The book should exist after update")
-        assertAll("controller",
+        assertAll("com/main/controller",
             { assertEquals("The Concise 48 Laws Of Power", book?.getName()) },
             { assertEquals("The Robert Greene Collection", book?.getAuthor()) },
             { assertEquals(123456789, book?.getIsbn()) }
