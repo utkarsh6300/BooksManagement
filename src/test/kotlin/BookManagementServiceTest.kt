@@ -3,8 +3,8 @@ import org.junit.jupiter.api.BeforeEach
 //import org.junit.jupiter.api.Test
 import kotlin.test.Test
 
-import BookManagement as BookManagement
-import Book as Book
+import services.BookManagementService as BookManagement
+import services.Book as Book
 
 // changed according to the databases
 
