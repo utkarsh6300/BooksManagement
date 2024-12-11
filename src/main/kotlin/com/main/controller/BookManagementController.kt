@@ -6,8 +6,12 @@ import io.micronaut.inject.validation.RequiresValidation
 
 import com.main.model.Book
 import com.main.services.BookManagementService
+import io.micronaut.security.annotation.Secured
+import io.micronaut.security.rules.SecurityRule
+
 // exact status are not yet communicated to response.
 // error handling needs to be added.
+@Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller("/book")
 class BookManagementController : BookManagementControllerInterface {
     private val bookManagementService = BookManagementService()
@@ -33,6 +37,7 @@ class BookManagementController : BookManagementControllerInterface {
         else
             HttpResponse.notFound("book with id '${id}' does not exist")
     }
+    @Secured(SecurityRule.IS_ANONYMOUS)
     @Get
     override fun getBook(@QueryValue id: String) : HttpResponse<Book?>  {
         //       faced serialization issue here added Serdeable to Book class
