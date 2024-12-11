@@ -14,13 +14,14 @@ import io.micronaut.security.errors.IssuingAnAccessTokenErrorCode.INVALID_GRANT
 import java.time.Instant
 import java.util.Optional
 
+// reference https://guides.micronaut.io/latest/micronaut-security-jwt-gradle-groovy.html
+
 @Singleton
 class CustomRefreshTokenPersistence(private val refreshTokenRepository: RefreshTokenRepository) : RefreshTokenPersistence {
 
     override fun persistToken(event: RefreshTokenGeneratedEvent) {
         if (event.refreshToken !=null && event.authentication?.name !=null) {
                      val payload : String = event.refreshToken
-                     println(payload)
                     refreshTokenRepository.save(1,event.authentication.name, payload, false,Instant.now())
         }
     }

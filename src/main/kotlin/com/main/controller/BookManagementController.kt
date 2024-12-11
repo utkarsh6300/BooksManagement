@@ -37,7 +37,7 @@ class BookManagementController : BookManagementControllerInterface {
         else
             HttpResponse.notFound("book with id '${id}' does not exist")
     }
-    @Secured(SecurityRule.IS_ANONYMOUS)
+
     @Get
     override fun getBook(@QueryValue id: String) : HttpResponse<Book?>  {
         //       faced serialization issue here added Serdeable to Book class
