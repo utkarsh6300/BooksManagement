@@ -12,7 +12,7 @@ import jakarta.inject.Inject
 
 
 @Controller("/signup")
-class AuthController(@Inject private val userService: UserService) {
+class UserController(@Inject private val userService: UserService) {
 
     @Secured(SecurityRule.IS_ANONYMOUS)
     @Post

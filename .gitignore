@@ -47,3 +47,4 @@ bin/
 **/application.properties
 
 src/main/resources/application.properties
+src/main/resources/logback.xml
