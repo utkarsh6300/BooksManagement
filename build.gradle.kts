@@ -45,6 +45,7 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("com.h2database:h2")
     implementation("io.projectreactor:reactor-core:3.5.4")
+    implementation("org.mindrot:jbcrypt:0.4")
 }
 
 application {

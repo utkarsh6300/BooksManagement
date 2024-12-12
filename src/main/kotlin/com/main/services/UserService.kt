@@ -5,6 +5,7 @@ import com.main.repository.UserRepository
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import java.time.Instant
+import org.mindrot.jbcrypt.BCrypt
 
 
 @Singleton
@@ -19,9 +20,7 @@ class UserService(
             throw IllegalArgumentException("User with username $username already exists")
         }
 
-        // Hash the password
-        val hashedPassword = password   // will encode and decode later  // better to hash at the call.
-//        val hashedPassword = passwordEncoder.encode(password)
+        val hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt())
 
         // Create new user
         val user = User(
@@ -38,7 +37,7 @@ class UserService(
             IllegalArgumentException("User not found")
         }
 
-        // Check if the provided password matches the stored password  // change to hash
-        return password==user.password
+        // Check if the provided password matches the stored password
+        return BCrypt.checkpw(password, user.password)
     }
 }
